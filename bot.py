@@ -30,7 +30,7 @@ bot = Client(
 async def start(_, message):
     user_id = message.from_user.id
     if user_id == Config.OWNER_ID:
-       return await message.reply_text("**Your assistant is online sir!**")
+       return await message.reply_text("**Hello Sir!**")
     else:
        return await message.reply_text(f"Hey there, I am assistant chatbot of {Config.OWNER_USERNAME}. You can send your message here, I'll send your message to him!")
 
