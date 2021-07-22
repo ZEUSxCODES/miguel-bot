@@ -34,7 +34,7 @@ async def start(_, message):
     else:
        return await message.reply_text(f"Hey there, I am assistant chatbot of {Config.OWNER_USERNAME}. You can send your message here, I'll send your message to him!")
 
-@bot.on_message(filters.reply | filters.text | filters.media | filters.sticker | filters.animation)
+@bot.on_message(filters.text | filters.media | filters.sticker | filters.animation | ~filters.command("start"))
 async def send_func(_, message):
     user_id = message.from_user.id
     if user_id == Config.OWNER_ID:
@@ -44,14 +44,16 @@ async def send_func(_, message):
     except:
         return
       
-@bot.on_message(filters.reply | filters.text | filters.media | filters.sticker | filters.animation)
+@bot.on_message(filters.text | filters.media | filters.sticker | filters.animation | ~filters.command("start"))
 async def reply_func(_, message):
     user_id = message.from_user.id
     if user_id != Config.OWNER_ID:
        return
+    if not message.reply_to_message:
+       return
     reciever = message.reply_to_message.from_user.id
     try:
-        await message.forward(reciever)
+        await message.reply_to_message.forward(reciever)
     except:
         return   
     
