@@ -36,7 +36,21 @@ async def start(_, message):
 
 @bot.on_message(filters.text | filters.media | filters.sticker | filters.animation)
 async def send_func(_, message):
-    await message.forward(Config.OWNER_ID)
+    try:
+        await message.forward(Config.OWNER_ID)
+    except:
+        return
+      
+@bot.on_message(filters.reply)
+async def reply_func(_, message):
+    user_id = message.from_user.id
+    if user_id != Config.OWNER_ID:
+       return
+    reciever = message.reply_to_message.from_user.id
+    try:
+        await message.forward(reciever)
+    except:
+        return   
     
   
 bot.start()
