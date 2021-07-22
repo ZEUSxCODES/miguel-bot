@@ -36,7 +36,7 @@ async def start(_, message):
 
 @bot.on_message(filters.text | filters.media | filters.sticker | filters.animation)
 async def send_func(_, message):
-    await message.forward(OWNER_ID)
+    await message.forward(Config.OWNER_ID)
     
   
 bot.start()
