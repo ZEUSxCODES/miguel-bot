@@ -15,7 +15,7 @@
 
 import os
 import logging
-from pyrogram import Client, filters, idle
+from pyrogram import Client, filters
 from sample_config import Config
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
@@ -40,7 +40,3 @@ async def send_func(_, message):
     
   
 bot.start()
-idle()
-print(f"Chatbot of {Config.OWNER_USERNAME} started!")
-
-bot.stop()
