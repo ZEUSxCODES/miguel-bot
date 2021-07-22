@@ -44,8 +44,7 @@ async def send_func(_, message):
     user_id = message.from_user.id
     if user_id == Config.OWNER_ID:
        if message.reply_to_message:
-          hn = message.reply_to_message.message_id
-          reciever = hn.user.id
+          reciever = message.reply_to_message.forwarded_from.id
           msg = message.reply_to_message
           try:
               await msg.forward(reciever)
