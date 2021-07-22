@@ -34,13 +34,13 @@ async def start(_, message):
     else:
        return await message.reply_text(f"Hey there, I am assistant chatbot of {Config.OWNER_USERNAME}. You can send your message here, I'll send your message to him!")
 
-@bot.on_message(filters.text | filters.media | filters.sticker | filters.animation)
+@bot.on_message(filters.text | filters.media | filters.sticker | filters.animation & ~filters.user(Config.OWNER_ID))
 async def send_func(_, message):
     await bot.forward_messages(Config.OWNER_ID, message.message_id)
     
   
 bot.start()
 idle()
-print(f"Chatbot of {Config.USERNAME} started!")
+print(f"Chatbot of {Config.OWNER_USERNAME} started!")
 
 bot.stop()
