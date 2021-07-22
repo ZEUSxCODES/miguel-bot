@@ -15,7 +15,7 @@
 
 import os
 import logging
-from pyrogram import Client, filters
+from pyrogram import Client, filters, idle
 from sample_config import Config
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
@@ -40,3 +40,4 @@ async def send_func(_, message):
     
   
 bot.start()
+idle()
