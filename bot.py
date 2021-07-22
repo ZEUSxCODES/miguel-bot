@@ -48,8 +48,8 @@ async def send_func(_, message):
           msg = message.reply_to_message
           try:
               await msg.forward(reciever)
-          except:
-              return
+          except Exception as e:
+              return await message.reply(str(e))
     else:
          try:
              await message.forward(Config.OWNER_ID)
