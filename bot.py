@@ -50,7 +50,7 @@ async def send_func(_, message):
           reciever = HNN.append(hn)
           msg = message.reply_to_message
           try:
-              await message.reply(HN[0])
+              await message.reply(HNN[0])
           except Exception as e:
               return await message.reply(str(e))
     else:
