@@ -11,3 +11,5 @@ class Config(object):
     OWNER_ID = int(os.environ.get("OWNER_ID", 123))
     
     OWNER_USERNAME = os.environ.get("OWNER_USERNAME", "")
+    
+    DATABASE_URL = os.environ.get("DATABASE_URL", "")
