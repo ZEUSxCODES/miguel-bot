@@ -26,13 +26,15 @@ bot = Client(
    bot_token=Config.BOT_TOKEN,
 )
 
+HNN = []
+
 @bot.on_message(filters.command("start") & filters.private)
 async def start(_, message):
     user_id = message.from_user.id
     if user_id == Config.OWNER_ID:
        return await message.reply_text("**Hello Sir!**")
     else:
-       return await message.reply_text(f"Hey there, I am assistant chatbot of {Config.OWNER_USERNAME}. You can send your message here, I'll send your message to him!")
+       return await message.reply_text(f"Hey there, I am PM Bot of {Config.OWNER_USERNAME}. You can send your message here!")
 
 @bot.on_message(filters.text | 
                 filters.media | 
@@ -44,10 +46,11 @@ async def send_func(_, message):
     user_id = message.from_user.id
     if user_id == Config.OWNER_ID:
        if message.reply_to_message:
-          reciever = idk vro
+          hn = message.reply_to_message
+          reciever = HNN.append(hn)
           msg = message.reply_to_message
           try:
-              await msg.forward(reciever)
+              await message.reply(HN[0])
           except Exception as e:
               return await message.reply(str(e))
     else:
