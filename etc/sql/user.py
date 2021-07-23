@@ -28,7 +28,7 @@ class Users(BASE):
 Users.__table__.create(checkfirst=True)
 
 
-def his_userid(message_id: int):
+def get_userid(message_id: int):
     """ get the user_id from the message_id """
     try:
         s__ = SESSION.query(Users).get(str(message_id))
