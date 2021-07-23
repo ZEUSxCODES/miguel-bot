@@ -18,7 +18,6 @@ import logging
 from pyrogram import Client, filters, idle
 from sample_config import Config
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
-from etc.sql.user import get_userid
 
 bot = Client(
    "NoPMsBot",
@@ -45,10 +44,9 @@ async def send_func(_, message):
     userid = message.from_user.id
     if userid == Config.OWNER_ID:
        if message.reply_to_message:
-          msg = message.reply_to_message
-          user_id, reply_message_id = get_userid(msg.message_id)
+          user_id = message.reply_to_message.forward_sender_id
           try:
-              await bot.send_message(user_id, reply_to_message_id = reply_message_id)
+              await message.forward(user_id)
           except Exception as e:
               return await message.reply(str(e))
     else:
