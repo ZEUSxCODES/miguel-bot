@@ -46,7 +46,7 @@ async def send_func(_, message):
     if userid == Config.OWNER_ID:
        if message.reply_to_message:
           msg = message.reply_to_message
-          user_id, reply_message_id = get_userid(msg.id)
+          user_id, reply_message_id = get_userid(msg.message_id)
           try:
               await bot.send_message(user_id, reply_to_message_id = reply_message_id)
           except Exception as e:
