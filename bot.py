@@ -44,7 +44,7 @@ async def send_func(_, message):
     userid = message.from_user.id
     if userid == Config.OWNER_ID:
        if message.reply_to_message:
-          user_id = message.reply_to_message.forward_sender_id
+          user_id = message.reply_to_message.forward_sender_id # waiting for this vomro
           try:
               await message.forward(user_id)
           except Exception as e:
