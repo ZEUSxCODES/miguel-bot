@@ -10,4 +10,4 @@ class Config(object):
     
     OWNER_ID = int(os.environ.get("OWNER_ID", 1663603208))
     
-    OWNER_USERNAME = os.environ.get("OWNER_USERNAME", "Anmol0700")
+    OWNER_USERNAME = os.environ.get("OWNER_USERNAME", "@Anmol0700")
