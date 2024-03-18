@@ -54,8 +54,7 @@ async def help_command(_, message):
         "➥ Donate 💳 [Us]\n\n"
         "🛠 Help Commands 🛠\n"
         "➥ /help\n"
-        "➥ /donate\n"
-        "➥ /settings\n\n"
+        "➥ /donate\n\n"
         "Powered by @Anmol0700\n\n"
         "✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧"
     )
