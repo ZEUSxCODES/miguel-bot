@@ -1,17 +1,17 @@
-#    Copyright (C) 2021 by @ImJanindu
-#    This programme is a part of Infinity Bots
+# Copyright (C) 2021 by @ImJanindu
+# This programme is a part of Infinity Bots
 #
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
 #
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
 #
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import os
 import logging
@@ -41,20 +41,19 @@ async def start(_, message):
                 filters.private | 
                 ~filters.command("start"))
 async def send_func(_, message):
-    userid = message.from_user.id
-    if userid == Config.OWNER_ID:
-       if message.reply_to_message:
-          user_id = message.reply_to_message.forward_sender_name # waiting for this vomro
-          try:
-              await message.forward(user_id)
-          except Exception as e:
-              return await message.reply(str(e))
+    user_id = message.from_user.id
+    if user_id == Config.OWNER_ID:
+        if message.reply_to_message and message.reply_to_message.forward_from:
+            forward_user_id = message.reply_to_message.forward_from.id
+            try:
+                await message.forward(chat_id=forward_user_id)
+            except Exception as e:
+                return await message.reply(str(e))
     else:
-         try:
-             await message.forward(Config.OWNER_ID)
-         except:
-             return
-    
+        try:
+            await message.forward(chat_id=Config.OWNER_ID)
+        except Exception as e:
+            return await message.reply(str(e))
   
 bot.start()
 idle()
