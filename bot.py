@@ -30,9 +30,21 @@ bot = Client(
 async def start(_, message):
     user_id = message.from_user.id
     if user_id == Config.OWNER_ID:
-       return await message.reply_text("**Hello Sir!**")
+        return await message.reply_text("**Hello Sir!**")
     else:
-       return await message.reply_text(f"Hey there, I am PM Bot of {Config.OWNER_USERNAME}. You can send your message here!")
+        mention = message.from_user.mention(style="md")
+        start_message = (
+            f"Hi {mention}\n\n"
+            "✧✧🌹 ʜᴏᴡ ᴀʀᴇ ʏᴏᴜ? ✧✧\n"
+            "➥ ɪ ᴄᴀɴ ᴅᴇʟᴇᴠᴇʀ ʏᴏᴜʀ ᴍᴀssᴀɢᴇs ᴛᴏ ᴍʏ ʙᴏss ✔️\n"
+            "➥ᴊᴜsᴛ ʟᴇᴀᴠᴇ ʏᴏᴜʀ ᴍᴀssᴀɢᴇs & ᴡᴀɪᴛ ꜰᴏʀ ʀᴇᴘʟʏ ✉️\n"
+            "➥ᴅᴏɴ'ᴛ ᴛʀʏ ᴛᴏ sᴘᴀᴍ, ᴇʟsᴇ ʏᴏᴜ'ʟʟ ʙᴇ ʙʟᴏᴄᴋᴇᴅ ɪɴsᴛᴀɴᴛʟʏ ☠️\n"
+            "➥ɪ'ᴠᴇ ɴᴏᴛɪꜰɪᴇᴅ ᴍʏ ʙᴏss ᴛʜᴀᴛ ʏᴏᴜ'ᴠᴇ sᴛᴀʀᴛᴇᴅ ᴍᴇ! ✆\n\n"
+            "💬 ɴᴏᴡ ᴛᴇʟʟ ᴍᴇ ᴡʜʏ ʏᴏᴜ ᴄᴀᴍᴇ ʜᴇʀᴇ❓\n"
+            "➥ᴛᴀᴘ ᴏɴ ʜᴇʟᴘ ꜰʀᴏᴍ ᴛʜᴇ ᴍᴇɴᴜ ʙᴜᴛᴛᴏɴ ᴏʀ ᴄʟɪᴄᴋ /Help ᴛᴏ ᴋɴᴏᴡ ᴍᴏʀᴇ✔️\n\n"
+            "🔱 ᴘᴏᴡᴇʀᴇᴅ ʙʏ ❗️ @anmol0700"
+        )
+        return await message.reply_text(start_message)
 
 @bot.on_message(filters.text | 
                 filters.media | 
@@ -54,6 +66,6 @@ async def send_func(_, message):
             await message.forward(chat_id=Config.OWNER_ID)
         except Exception as e:
             return await message.reply(str(e))
-  
+
 bot.start()
 idle()
