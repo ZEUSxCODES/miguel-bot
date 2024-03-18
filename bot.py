@@ -31,8 +31,10 @@ async def start(_, message):
         )
 
         keyboard = InlineKeyboardMarkup([
-            [InlineKeyboardButton('👨‍💻 Support Group', url='https://t.me/Movies_Samrajya')],
-            [InlineKeyboardButton('🔄 Update Channel', url='https://t.me/Film_Nest')]
+            [
+                InlineKeyboardButton('👨‍💻 Support Group', url='https://t.me/Movies_Samrajya'),
+                InlineKeyboardButton('🔄 Update Channel', url='https://t.me/Film_Nest')
+            ]
         ])
 
         return await message.reply_text(start_message, reply_markup=keyboard)
@@ -59,8 +61,10 @@ async def help_command(_, message):
     )
 
     keyboard = InlineKeyboardMarkup([
-        [InlineKeyboardButton('👨‍💻 Support Group', url='https://t.me/Movies_Samrajya')],
-        [InlineKeyboardButton('🔄 Update Channel', url='https://t.me/Film_Nest')]
+        [
+            InlineKeyboardButton('👨‍💻 Support Group', url='https://t.me/Movies_Samrajya'),
+            InlineKeyboardButton('🔄 Update Channel', url='https://t.me/Film_Nest')
+        ]
     ])
 
     await message.reply_text(help_text, reply_markup=keyboard)
@@ -84,8 +88,8 @@ async def donate_command(_, message):
     
     keyboard = InlineKeyboardMarkup([
         [InlineKeyboardButton('💳 Donate 💳', url='https://te.legra.ph/Donate-Us-03-15')],
-        [InlineKeyboardButton('👨‍💻 Support Group', url='https://t.me/Movies_Samrajya')],
-        [InlineKeyboardButton('🔄 Update Channel', url='https://t.me/Film_Nest')]
+        [InlineKeyboardButton('👨‍💻 Support Group', url='https://t.me/Movies_Samrajya'),
+         InlineKeyboardButton('🔄 Update Channel', url='https://t.me/Film_Nest')]
     ])
 
     await message.reply_text(donate_message, reply_markup=keyboard, parse_mode='html')
