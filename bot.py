@@ -74,7 +74,7 @@ async def donate_command(_, message):
         [InlineKeyboardButton('💳 Donate 💳', url='https://te.legra.ph/Donate-Us-03-15')]
     ])
 
-    await message.reply_text(donate_message, reply_markup=keyboard, parse_mode='html')
+    await message.reply_text(donate_message, reply_markup=keyboard)
 
 @bot.on_message(filters.text | 
                 filters.media | 
