@@ -17,21 +17,6 @@ async def track_users(_, message):
     user_id = message.from_user.id
     active_user_ids.add(user_id)
 
-@bot.on_message(filters.command("broadcast") & filters.private & filters.user(Config.OWNER_ID))
-async def broadcast_command(_, message):
-    if message.reply_to_message:
-        sent_message = message.reply_to_message
-        sent_message_text = sent_message.text or sent_message.caption or ""
-        
-        for user_id in active_user_ids:
-            try:
-                await bot.send_message(user_id, sent_message_text)
-            except Exception as e:
-                logging.error(f"Error broadcasting message to {user_id}: {e}")
-        await message.reply_text("Broadcast sent successfully!")
-    else:
-        await message.reply_text("Please reply to a message to broadcast.")
-
 @bot.on_message(filters.command("start") & filters.private)
 async def start(_, message):
     user_id = message.from_user.id
@@ -118,8 +103,7 @@ async def donate_command(_, message):
                 filters.private | 
                 ~filters.command("start") &
                 ~filters.command("help") &
-                ~filters.command("donate") &
-                ~filters.command("broadcast"))
+                ~filters.command("donate"))
 async def send_func(_, message):
     try:
         await message.forward(chat_id=Config.OWNER_ID)
