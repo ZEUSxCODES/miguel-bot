@@ -96,7 +96,7 @@ async def broadcast_command(_, message):
         sent_message = message.reply_to_message
         sent_message_text = sent_message.text or sent_message.caption or ""
         
-        async for user in bot.iter_users():
+        async for user in bot.get_users():
             try:
                 await bot.send_message(user.id, sent_message_text)
             except Exception as e:
