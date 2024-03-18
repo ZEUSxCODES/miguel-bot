@@ -86,10 +86,7 @@ async def donate_command(_, message):
     )
     
     keyboard = InlineKeyboardMarkup([
-        [InlineKeyboardButton('💳 Donate 💳', url='https://te.legra.ph/Donate-Us-03-15')],
-        [InlineKeyboardButton('👨‍💻 Support Group', url='https://t.me/Movies_Samrajya'),
-         InlineKeyboardButton('🔄 Update Channel', url='https://t.me/Film_Nest')]
-    ])
+        [InlineKeyboardButton('💳 Donate 💳', url='https://te.legra.ph/Donate-Us-03-15')]])
 
     await message.reply_text(donate_message, reply_markup=keyboard, parse_mode='markdown')
 
