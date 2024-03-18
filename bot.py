@@ -85,7 +85,7 @@ async def donate_command(_, message):
         "Or you can scan the QR code below 👇\n"
         "UPI link 🔗 also there 😇\n\n"
         "Thanking you 🌹\n\n"
-        "🛍 UPI ID:\n<code>anmol0700@fam</code>"
+        "🛍 UPI ID:\n`anmol0700@fam`"
     )
     
     keyboard = InlineKeyboardMarkup([
@@ -94,7 +94,7 @@ async def donate_command(_, message):
          InlineKeyboardButton('🔄 Update Channel', url='https://t.me/Film_Nest')]
     ])
 
-    await message.reply_text(donate_message, reply_markup=keyboard, parse_mode='html')
+    await message.reply_text(donate_message, reply_markup=keyboard)
 
 @bot.on_message(filters.command("settings") & filters.private)
 async def settings_command(_, message):
@@ -115,7 +115,7 @@ async def settings_command(_, message):
 
     settings[message.from_user.id] = True  # Default value for notifications
 
-    await message.reply_text(settings_message, reply_markup=keyboard)
+    await message.reply_text(settings_message, reply_markup=keyboard, parse_mode='markdown')
 
 @bot.on_callback_query()
 async def callback_handler(_, query):
