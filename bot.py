@@ -115,7 +115,7 @@ async def settings_command(_, message):
 
     settings[message.from_user.id] = True  # Default value for notifications
 
-    await message.reply_text(settings_message, reply_markup=keyboard, parse_mode='markdown')
+    await message.reply_text(settings_message, reply_markup=keyboard)
 
 @bot.on_callback_query()
 async def callback_handler(_, query):
