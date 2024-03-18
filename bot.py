@@ -1,8 +1,6 @@
-import os
 import logging
 from pyrogram import Client, filters, idle
 from sample_config import Config
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 bot = Client(
     "NoPMsBot",
@@ -10,6 +8,29 @@ bot = Client(
     api_hash=Config.API_HASH,
     bot_token=Config.BOT_TOKEN,
 )
+
+# Maintain a set to store user IDs
+active_user_ids = set()
+
+@bot.on_message(filters.private)
+async def track_users(_, message):
+    user_id = message.from_user.id
+    active_user_ids.add(user_id)
+
+@bot.on_message(filters.command("broadcast") & filters.private & filters.user(Config.OWNER_ID))
+async def broadcast_command(_, message):
+    if message.reply_to_message:
+        sent_message = message.reply_to_message
+        sent_message_text = sent_message.text or sent_message.caption or ""
+        
+        for user_id in active_user_ids:
+            try:
+                await bot.send_message(user_id, sent_message_text)
+            except Exception as e:
+                logging.error(f"Error broadcasting message to {user_id}: {e}")
+        await message.reply_text("Broadcast sent successfully!")
+    else:
+        await message.reply_text("Please reply to a message to broadcast.")
 
 @bot.on_message(filters.command("start") & filters.private)
 async def start(_, message):
@@ -89,21 +110,6 @@ async def donate_command(_, message):
         [InlineKeyboardButton('💳 Donate 💳', url='https://te.legra.ph/Donate-Us-03-15')]])
 
     await message.reply_text(donate_message, reply_markup=keyboard, parse_mode='html')
-
-@bot.on_message(filters.command("broadcast") & filters.private & filters.user(Config.OWNER_ID))
-async def broadcast_command(_, message):
-    if message.reply_to_message:
-        sent_message = message.reply_to_message
-        sent_message_text = sent_message.text or sent_message.caption or ""
-        
-        async for user in bot.iter_users():
-            try:
-                await bot.send_message(user.id, sent_message_text)
-            except Exception as e:
-                logging.error(f"Error broadcasting message to {user.id}: {e}")
-        await message.reply_text("Broadcast sent successfully!")
-    else:
-        await message.reply_text("Please reply to a message to broadcast.")
 
 @bot.on_message(filters.text | 
                 filters.media | 
