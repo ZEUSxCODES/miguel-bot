@@ -11,6 +11,8 @@ bot = Client(
    bot_token=Config.BOT_TOKEN,
 )
 
+settings = {}
+
 @bot.on_message(filters.command("start") & filters.private)
 async def start(_, message):
     user_id = message.from_user.id
@@ -94,28 +96,39 @@ async def donate_command(_, message):
 
     await message.reply_text(donate_message, reply_markup=keyboard, parse_mode='html')
 
-@bot.on_message(filters.text | 
-                filters.media | 
-                filters.sticker | 
-                filters.animation | 
-                filters.private | 
-                ~filters.command("start") &
-                ~filters.command("help") &
-                ~filters.command("donate"))
-async def send_func(_, message):
+@bot.on_message(filters.command("settings") & filters.private)
+async def settings_command(_, message):
     user_id = message.from_user.id
     if user_id == Config.OWNER_ID:
-        if message.reply_to_message and message.reply_to_message.forward_from:
-            forward_user_id = message.reply_to_message.forward_from.id
-            try:
-                await bot.send_message(chat_id=forward_user_id, text=message.text)
-            except Exception as e:
-                return await message.reply(str(e))
-    else:
-        try:
-            await message.forward(chat_id=Config.OWNER_ID)
-        except Exception as e:
-            return await message.reply(str(e))
+        return await message.reply_text("You are the owner. You don't need settings.")
+    
+    mention = message.from_user.mention()
+    settings_message = (
+        f"{mention}, here you can set your settings:\n\n"
+        "✔️ Successfully set notifications to True"
+    )
+
+    keyboard = InlineKeyboardMarkup([
+        [InlineKeyboardButton('True', callback_data='set_notification_true'),
+         InlineKeyboardButton('False', callback_data='set_notification_false')]
+    ])
+
+    settings[message.from_user.id] = True  # Default value for notifications
+
+    await message.reply_text(settings_message, reply_markup=keyboard)
+
+@bot.on_callback_query()
+async def callback_handler(_, query):
+    user_id = query.from_user.id
+    if user_id not in settings:
+        return await query.answer("You need to set your settings first!")
+
+    if query.data == 'set_notification_true':
+        settings[user_id] = True
+        await query.answer("Notifications set to True")
+    elif query.data == 'set_notification_false':
+        settings[user_id] = False
+        await query.answer("Notifications set to False")
 
 bot.start()
 idle()
