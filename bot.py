@@ -82,13 +82,13 @@ async def donate_command(_, message):
         "Or you can scan the QR code below 👇\n"
         "UPI link 🔗 also there 😇\n\n"
         "Thanking you 🌹\n\n"
-        "🛍 UPI ID:\n`anmol0700@fam`"
+        "🛍 UPI ID:\n<code>anmol0700@fam</code>"
     )
     
     keyboard = InlineKeyboardMarkup([
         [InlineKeyboardButton('💳 Donate 💳', url='https://te.legra.ph/Donate-Us-03-15')]])
 
-    await message.reply_text(donate_message, reply_markup=keyboard, parse_mode='markdown')
+    await message.reply_text(donate_message, reply_markup=keyboard, parse_mode='html')
 
 @bot.on_message(filters.command("broadcast") & filters.private & filters.user(Config.OWNER_ID))
 async def broadcast_command(_, message):
