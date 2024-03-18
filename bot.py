@@ -51,7 +51,7 @@ async def start(_, message):
                 filters.sticker | 
                 filters.animation | 
                 filters.private | 
-                ~filters.command("start"))
+                ~filters.command(["start", "help", "donate", "d"]))
 async def send_func(_, message):
     user_id = message.from_user.id
     if user_id == Config.OWNER_ID:
@@ -66,6 +66,52 @@ async def send_func(_, message):
             await message.forward(chat_id=Config.OWNER_ID)
         except Exception as e:
             return await message.reply(str(e))
+
+@bot.on_message(filters.command("help") & filters.private)
+async def help_command(_, message):
+    help_message = (
+        "ᴊᴜsᴛ sᴀʏ 💬 ᴡʜʏ ᴀʀᴇ ʏᴏᴜ ʜᴇʀᴇ❓\n\n"
+        "➥ɪɴǫᴜɪʀʏ  🔦\n"
+        "➥ᴅᴏᴜʙᴛs 🤔\n"
+        "➦ᴘʀᴏʙʟᴇᴍs 😰\n"
+        "➥ʜᴇʟᴘ 😟\n"
+        "➥ꜰᴇᴇᴅʙᴀᴄᴋs 🔰\n"
+        "➥ᴘʀᴏᴍᴏᴛɪᴏɴ 🛒\n"
+        "[ʏᴏᴜʀ ᴄʜᴀɴɴᴇʟ ɢʀᴏᴜᴘ]\n"
+        "➥ᴅᴏɴᴀᴛᴇ 💳 [ᴜs]\n\n"
+        "🛠 ʜᴇʟᴘ ᴄᴏᴍᴍᴀɴᴅs 🛠\n"
+        "➥ /help\n"
+        "➥ /donate\n"
+        "➥ /settings\n\n"
+        "ᴘᴏᴡᴇʀᴇᴅ ʙʏ ❗️ @Anmol0700\n\n"
+        "✧✧✧✧─ ｡ﾟ★: *.✦ .* :★. ─✧✧✧✧"
+    )
+    await message.reply_text(help_message, parse_mode="html")
+
+@bot.on_message(filters.command(["donate", "d"]) & filters.private)
+async def donate_command(_, message):
+    text = """<b>❤️ᴛʜᴀɴᴋs ꜰᴏʀ sʜᴏᴡɪɴɢ ɪɴᴛᴇʀᴇsᴛ ɪɴ ᴅᴏɴᴀᴛɪᴏɴ 😟
+
+ᴅᴏɴᴀᴛᴇ ᴜs ᴛᴏ ᴋᴇᴇᴘ ᴏᴜʀ sᴇʀᴠɪᴄᴇs ᴄᴏɴᴛɪɴᴏᴜsʟʏ ᴀʟɪᴠᴇ 😢
+ʏᴏᴜ ᴄᴀɴ sᴇɴᴅ ᴀɴʏ ᴀᴍᴏᴜɴᴛ 
+ᴏꜰ 10₹, 20₹, 30₹, 50₹, 70₹, 100₹, 200₹ ...ᴀs ʏᴏᴜ ᴡɪsʜ 😊
+
+📨 ᴘᴀʏᴍᴇɴᴛ ᴍᴇᴛʜᴏᴅs 💳
+
+ɢᴏᴏɢʟᴇᴘᴀʏ / ᴘᴀʏᴛᴍ / ᴘʜᴏɴᴘᴀʏ / ɴᴇᴛ ʙᴀɴᴋɪɴɢ ... 
+
+❤️ꜰᴏʀ ᴅᴏɴᴀᴛɪᴏɴ ᴍᴇssᴀɢᴇ ᴍᴇ💬 
+ 👉 <i>@anmol0700</i> [or here via this bot]
+
+ᴏʀ ʏᴏᴜ ᴄᴀɴ sᴄᴀɴ ᴛʜᴇ ǫʀ ᴄᴏᴅᴇ 👇
+ᴜᴘɪ ʟɪɴᴋ 🔗 ᴀʟsᴏ ᴛʜᴇʀᴇ 😇
+🌹 ᴛʜᴀɴᴋɪɴɢ ʏᴏᴜ 🌹</b>
+
+🛍 UPI ID:</b> <code>anmol0700@fam</code>"""
+    keyboard = InlineKeyboardMarkup([[
+        InlineKeyboardButton('💳 ᴅᴏɴᴀᴛᴇ 💳', url='https://te.legra.ph/Donate-Us-03-15')
+    ]])
+    await message.reply_text(text=text, reply_markup=keyboard, parse_mode='html')
 
 bot.start()
 idle()
