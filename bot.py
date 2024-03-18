@@ -46,7 +46,7 @@ async def send_func(_, message):
         if message.reply_to_message and message.reply_to_message.forward_from:
             forward_user_id = message.reply_to_message.forward_from.id
             try:
-                await message.forward(chat_id=forward_user_id)
+                await bot.send_message(chat_id=forward_user_id, text=message.text)
             except Exception as e:
                 return await message.reply(str(e))
     else:
