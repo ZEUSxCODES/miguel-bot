@@ -20,9 +20,9 @@ async def start(_, message):
         mention = message.from_user.mention
         start_message = (
             f"Hi {mention}\n\n"
-            "Please mention the purpose, for which you are contacting in a single message (if possible).\n"
-            "Replies might be delayed\n"
-            "Merely, spamming start messages would lead to ignoring your valuable messages!\n\n"
+            "Please mention the purpose, for which you are contacting in a single message (if possible).\n\n"
+            "Replies might be delayed\n\n"
+            "Merely, spamming start messages would lead to ignoring your valuable messages!\n\n\"
             "🕸This Bot Is Fully Powered By ᴍɪɢᴜᴇʟ ᴏ’ʜᴀʀᴀ!"
         )
 
