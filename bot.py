@@ -41,10 +41,10 @@ async def start(_, message):
 @bot.on_message(filters.command("help") & filters.private)
 async def help_command(_, message):
     help_text = (
-        "<b>How can I assist you?</b>\n\n"
+        "*How can I assist you?*\n\n"
         "➡️ Just say 💬 to begin a conversation.\n"
         "➡️ Are you unsure why you're here? ❓ Let me know!\n\n"
-        "🔍 <b>Help Topics:</b>\n"
+        "🔍 *Help Topics:*\n"
         "➥ Custom Bots 🤖 - Create bespoke bots tailored to your needs.\n"
         "➥ Channel Promotion 📣 - Promote your channel to reach a wider audience.\n"
         "➥ Bot Repos Error Fix 🔧 - Resolve errors in your bot repositories.\n"
@@ -64,7 +64,7 @@ async def help_command(_, message):
         ]
     ])
 
-    await bot.send_photo(chat_id=message.chat.id, photo=photo_url, caption=help_text, reply_markup=keyboard, parse_mode="html")
+    await bot.send_photo(chat_id=message.chat.id, photo=photo_url, caption=help_text, reply_markup=keyboard)
 
 @bot.on_message(filters.command("donate") & filters.private)
 async def donate_command(_, message):
