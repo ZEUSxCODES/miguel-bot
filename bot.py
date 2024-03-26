@@ -17,14 +17,16 @@ async def start(_, message):
     if user_id == Config.OWNER_ID:
         return await message.reply_text("**Hello Sir!**")
     else:
-        mention = message.from_user.mention()
+        mention = message.from_user.mention
         start_message = (
             f"Hi {mention}\n\n"
-"Please mention the purpose, for which you are contacting in a single message (if possible).\n"
-"Replies might be delayed\n"
-"Merely, spamming start messages would lead to ignoring your valuable messages!\n\n"
-"🕸This Bot Is Fully Powered By ᴍɪɢᴜᴇʟ ᴏ’ʜᴀʀᴀ!"
+            "Please mention the purpose, for which you are contacting in a single message (if possible).\n"
+            "Replies might be delayed\n"
+            "Merely, spamming start messages would lead to ignoring your valuable messages!\n\n"
+            "🕸This Bot Is Fully Powered By ᴍɪɢᴜᴇʟ ᴏ’ʜᴀʀᴀ!"
         )
+
+        photo_url = "https://te.legra.ph/file/b4faeaa2b1187d9d02f95.jpg"
 
         keyboard = InlineKeyboardMarkup([
             [
@@ -33,6 +35,10 @@ async def start(_, message):
             ]
         ])
 
+        # Sending the photo before the start message
+        await bot.send_photo(chat_id=message.chat.id, photo=photo_url)
+
+        # Sending the start message with the keyboard
         return await message.reply_text(start_message, reply_markup=keyboard)
 
 @bot.on_message(filters.command("help") & filters.private)
