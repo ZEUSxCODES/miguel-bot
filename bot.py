@@ -19,15 +19,11 @@ async def start(_, message):
     else:
         mention = message.from_user.mention()
         start_message = (
-            f"Hi {mention}\n\n"
-            "How are you today?\n"
-            "I can deliver your messages to my boss.\n"
-            "Just leave your messages & wait for reply.\n"
-            "Don't try to spam, else you'll be blocked instantly.\n"
-            "I've notified my boss that you've started me!\n\n"
-            "Now tell me why you came here?\n"
-            "Tap on Help from the menu button or click /help to know more.\n\n"
-            "Powered by @anmol0700"
+            f"""Hi {mention}\n\n
+"Please mention the purpose, for which you are contacting in a single message (if possible)."
+"Replies might be delayed"
+"Merely, spamming start messages would lead to ignoring your valuable messages!"
+"🕸This Bot Is Fully Powered By ᴍɪɢᴜᴇʟ ᴏ’ʜᴀʀᴀ!"
         )
 
         keyboard = InlineKeyboardMarkup([
