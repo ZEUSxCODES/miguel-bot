@@ -88,11 +88,7 @@ async def donate_command(_, message):
 
     await message.reply_text(donate_message, reply_markup=keyboard)
 
-@bot.on_message(filters.text | 
-                filters.media | 
-                filters.sticker | 
-                filters.animation | 
-                filters.private | 
+@bot.on_message(filters.private | 
                 ~filters.command("start") &
                 ~filters.command("help") &
                 ~filters.command("donate"))
