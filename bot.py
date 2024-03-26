@@ -41,22 +41,21 @@ async def start(_, message):
 @bot.on_message(filters.command("help") & filters.private)
 async def help_command(_, message):
     help_text = (
-        "Just say 💬\n"
-        "Why are you here❓\n\n"
-        "➥ Inquiries 🔦\n"
-        "➥ Doubts 🤔\n"
-        "➦ Problems 😰\n"
-        "➥ Help 😟\n"
-        "➥ Feedbacks 🔰\n"
-        "➥ Promotion 🛒\n"
-        "[Your Channel/Group]\n"
-        "➥ Donate 💳 [Us]\n\n"
-        "🛠 Help Commands 🛠\n"
-        "➥ /help\n"
-        "➥ /donate\n\n"
-        "Powered by @Anmol0700\n\n"
-        "✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧"
+        "<b>How can I assist you?</b>\n\n"
+        "➡️ Just say 💬 to begin a conversation.\n"
+        "➡️ Are you unsure why you're here? ❓ Let me know!\n\n"
+        "🔍 <b>Help Topics:</b>\n"
+        "➥ Custom Bots 🤖 - Create bespoke bots tailored to your needs.\n"
+        "➥ Channel Promotion 📣 - Promote your channel to reach a wider audience.\n"
+        "➥ Bot Repos Error Fix 🔧 - Resolve errors in your bot repositories.\n"
+        "➥ Database Selling 💰 - Purchase databases at affordable rates.\n"
+        "➥ Channel Selling 📈 - Sell your channels and grow your network.\n"
+        "➥ Paid Subscriptions 💼 - Access premium services with subscription plans.\n"
+        "➥ Other Services 🛠 - Explore a variety of additional services.\n\n"
+        "Powered by @Anmol0700"
     )
+
+    photo_url = "https://te.legra.ph/file/b4faeaa2b1187d9d02f95.jpg"
 
     keyboard = InlineKeyboardMarkup([
         [
@@ -65,7 +64,7 @@ async def help_command(_, message):
         ]
     ])
 
-    await message.reply_text(help_text, reply_markup=keyboard)
+    await bot.send_photo(chat_id=message.chat.id, photo=photo_url, caption=help_text, reply_markup=keyboard, parse_mode="HTML")
 
 @bot.on_message(filters.command("donate") & filters.private)
 async def donate_command(_, message):
