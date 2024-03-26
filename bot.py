@@ -22,7 +22,7 @@ async def start(_, message):
             f"👋Hi {mention}😎\n\n"
             "Please mention the purpose, for which you are contacting in a <b>single message (if possible).</b>\n\n"
             "<i>Replies might be delayed</i>\n\n"
-            "Merely, spamming start messages would lead to ignoring your valuable messages!\n\n\"
+            "Merely, spamming start messages would lead to ignoring your valuable messages!\n\n"
             "🕸This Bot Is Fully Powered By ᴍɪɢᴜᴇʟ ᴏ’ʜᴀʀᴀ!"
         )
 
