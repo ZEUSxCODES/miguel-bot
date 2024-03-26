@@ -35,11 +35,8 @@ async def start(_, message):
             ]
         ])
 
-        # Sending the photo before the start message
-        await bot.send_photo(chat_id=message.chat.id, photo=photo_url)
-
-        # Sending the start message with the keyboard
-        return await message.reply_text(start_message, reply_markup=keyboard)
+        # Sending the photo with caption and the start message
+        await bot.send_photo(chat_id=message.chat.id, photo=photo_url, caption=start_message, reply_markup=keyboard)
 
 @bot.on_message(filters.command("help") & filters.private)
 async def help_command(_, message):
