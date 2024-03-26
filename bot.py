@@ -64,7 +64,7 @@ async def help_command(_, message):
         ]
     ])
 
-    await bot.send_photo(chat_id=message.chat.id, photo=photo_url, caption=help_text, reply_markup=keyboard, parse_mode="HTML")
+    await bot.send_photo(chat_id=message.chat.id, photo=photo_url, caption=help_text, reply_markup=keyboard, parse_mode="html")
 
 @bot.on_message(filters.command("donate") & filters.private)
 async def donate_command(_, message):
